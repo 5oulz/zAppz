@@ -32,7 +32,7 @@ let initSideNav = _ => {
 (_ => {
     // further down the road we want to check when we need to append login
     initLogin();
-    displayLoginView();
+    //displayLoginView();
     initSideNav();
     passiveEvSupported();
 })();
