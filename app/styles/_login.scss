@@ -1,0 +1,58 @@
+.login-anchor {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    perspective: 500px;
+
+    .login-wrapper {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        perspective: 500px;
+        background: transparent;
+
+        &__left-section,
+        &__right-section {
+            width: 30%;
+            height: 100%;
+            background-color: palette(secondary);
+        }
+
+        &__middle-section {
+            width: 40%;
+            height: 100%;
+            &__not-box {
+                width: 100%;
+                height: 30%;
+                background-color: palette(secondary);
+            }
+            &__login-box {
+                width: 100%;
+                height: 40%;
+                display: block;
+                background-color: palette(primary);
+                transform-origin: 0% 0%;
+            }
+
+            &__login-box-shadow {
+                width: 100%;
+                height: 40%;
+                position: absolute;
+                display: none;
+
+                background-color: rgba(0, 0, 0, 0.4);
+                top: 3px;
+                left: 3px;
+            }
+        }
+    }
+}

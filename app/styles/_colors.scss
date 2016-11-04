@@ -1,0 +1,23 @@
+// if you want to create a new theme, just do so creating a new palette. then change the name on the mixin for the name of your palette
+$mainThemePalettes: (
+	primary: (
+		base: rgba(75, 160, 49, 1)
+	),
+	secondary: (
+		base: rgba(62, 54, 63, 1)
+	),
+	different: (
+		base: rgba(184, 180, 45, 1)
+	),
+	details: (
+		base: rgba(221, 64, 58, 1)
+	),
+	standard: (
+		base: rgba(255, 252, 232, 1)
+	)
+);
+
+// SASS mixin to access color palettes
+@function palette($palette, $tone: 'base') {
+    @return map-get(map-get($mainThemePalettes, $palette), $tone);
+}

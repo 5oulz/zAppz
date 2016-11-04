@@ -1,0 +1,95 @@
+$cube-face-size: 150px;
+$half-face-size: $cube-face-size/2;
+$negative-half: -$half-face-size;
+
+.cube-view {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    perspective: 1500px;
+    cursor: pointer;
+
+    &__cube {
+        display: flex;
+        position: relative;
+        width: $cube-face-size;
+        height: $cube-face-size;
+        transform-style: preserve-3d;
+        transform-origin: 50% 50% $negative-half;
+        transform: rotate3d(1, 1, 1, 45deg);
+
+        -webkit-transition: transform 0.33s ease-out;
+        -o-transition: transform 0.33s ease-out;
+        transition: transform 0.33s ease-out;
+
+        &__cube-face {
+            width: 100%;
+            height: 100%;
+            flex-grow: 0;
+            flex-shrink: 0;
+            background-color: rebeccapurple;
+            position: absolute;
+            backface-visibility: hidden;
+            border: 2px solid #000;
+
+            // backface
+            &:nth-of-type(2) {
+                -webkit-transform: translate3d(0, 0, -$cube-face-size) rotate3d(0, 1, 0, 180deg);
+                -ms-transform: translate3d(0, 0, -$cube-face-size) rotate3d(0, 1, 0, 180deg);
+                -o-transform: translate3d(0, 0, -$cube-face-size) rotate3d(0, 1, 0, 180deg);
+                transform: translate3d(0, 0, -$cube-face-size) rotate3d(0, 1, 0, 180deg);
+            }
+
+            // left face
+            &:nth-of-type(3) {
+                -webkit-transform: translateZ(-$half-face-size) rotate3d(0, 1, 0, -90deg);
+                -ms-transform: translateZ(-$half-face-size) rotate3d(0, 1, 0, -90deg);
+                -o-transform: translateZ(-$half-face-size) rotate3d(0, 1, 0, -90deg);
+                transform: translateZ(-$half-face-size) rotate3d(0, 1, 0, -90deg);
+                top: 0;
+                left: -50%;
+            }
+
+            // right face
+            &:nth-of-type(4) {
+                -webkit-transform: translateZ(-$half-face-size) rotate3d(0, 1, 0, 90deg);
+                -ms-transform: translateZ(-$half-face-size) rotate3d(0, 1, 0, 90deg);
+                -o-transform: translateZ(-$half-face-size) rotate3d(0, 1, 0, 90deg);
+                transform: translateZ(-$half-face-size) rotate3d(0, 1, 0, 90deg);
+                top: 0;
+                left: 50%;
+            }
+
+            // top face
+            &:nth-of-type(5) {
+                -webkit-transform: translate3d(0, 0, -$half-face-size) rotate3d(1, 0, 0, 90deg);
+                -ms-transform: translate3d(0, 0, -$half-face-size) rotate3d(1, 0, 0, 90deg);
+                -o-transform: translate3d(0, 0, -$half-face-size) rotate3d(1, 0, 0, 90deg);
+                transform: translate3d(0, 0, -$half-face-size) rotate3d(1, 0, 0, 90deg);
+                top: -50%;
+                left: 0;
+
+            }
+
+            // bottom face
+            &:nth-of-type(6) {
+                -webkit-transform: translate3d(0, 0, -$half-face-size) rotate3d(1, 0, 0, -90deg);
+                -ms-transform: translate3d(0, 0, -$half-face-size) rotate3d(1, 0, 0, -90deg);
+                -o-transform: translate3d(0, 0, -$half-face-size) rotate3d(1, 0, 0, -90deg);
+                transform: translate3d(0, 0, -$half-face-size) rotate3d(1, 0, 0, -90deg);
+                top: 50%;
+                left: 0;
+
+            }
+        }
+    }
+
+    &__transparency {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        background-color: transparent;
+    }
+}

@@ -1,0 +1,111 @@
+.side-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+
+    &:before {
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        z-index: 1;
+
+        -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1);
+        -o-transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1);
+        transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1);
+    }
+
+    &__container {
+        position: absolute;
+        width: 90%;
+        height: 100%;
+        max-width: 400px;
+        background-color: palette(standard);
+        z-index: 2;
+
+        -webkit-transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
+        -o-transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
+        transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
+
+        -webkit-transform: translate3d(-102%, 0, 0);
+        -ms-transform: translate3d(-102%, 0, 0);
+        -o-transform: translate3d(-102%, 0, 0);
+        transform: translate3d(-102%, 0, 0);
+
+        ul li:nth-of-type(3) {
+            color: blue;
+            font-weight: bold;
+        }
+    }
+
+    &__header {
+        width: 100%;
+        height: 30%;
+        background-color: palette(primary);
+
+        &__cross {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 19px;
+            left: 17px;
+            padding: 0;
+            text-align: center;
+            line-height: 20px;
+            font-size: 18px;
+            color: palette(standard);
+            cursor: pointer;
+            outline: transparent;
+            border: none;
+            background-color: transparent;
+        }
+
+        &:before {
+            content: "";
+            background: url('../images/ball_icon.png') no-repeat;
+            width: 100%;
+            height: 100%;
+            display: block;
+            opacity: 0.06;
+            background-size: 100%;
+            background-position: 100% -70%;
+        }
+    }
+
+    /**
+     * sideNav animations
+     * */
+
+    &.visible {
+        transform: none;
+        pointer-events: auto;
+
+        &:before {
+            opacity: 1;
+        }
+    }
+
+    &.visible &__container {
+        transform: none;
+    }
+
+    &.animatable {
+        -webkit-transition: transform 0.33s cubic-bezier(0, 0, 0.3, 1);
+        -o-transition: transform 0.33s cubic-bezier(0, 0, 0.3, 1);
+        transition: transform 0.33s cubic-bezier(0, 0, 0.3, 1);
+    }
+
+    &.animatable &__container {
+        -webkit-transition: transform 0.13s cubic-bezier(0, 0, 0.3, 1);
+        -o-transition: transform 0.13s cubic-bezier(0, 0, 0.3, 1);
+        transition: transform 0.33s cubic-bezier(0, 0, 0.3, 1);
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "y",
+  "title": "zAppz",
+  "description": "broadcasting",
+  "version": "0.1.0",
+  "homepage": "https://github.com/5oulz/zAppz",
+  "author": {
+    "name": "Rafael Venâncio",
+    "email": "rafael.venancio@inm.pt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/5oulz/zAppz.git"
+  },
+  "bugs": "https://github.com/5oulz/zAppz/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/5oulz/zAppz/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": []
+}
