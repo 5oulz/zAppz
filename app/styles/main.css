@@ -101,18 +101,45 @@
   -o-transform: translate3d(-102%, 0, 0);
   transform: translate3d(-102%, 0, 0);
 }
-/* line 43, _sideNav.scss */
-.side-nav__container ul li:nth-of-type(3) {
-  color: blue;
-  font-weight: bold;
+/* line 44, _sideNav.scss */
+.side-nav__nav-items {
+  width: 100%;
+  height: 70%;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
-/* line 49, _sideNav.scss */
+/* line 54, _sideNav.scss */
+.side-nav__nav-items li {
+  width: 100%;
+  padding: 0 20px;
+  list-style-type: none;
+  cursor: pointer;
+  -webkit-transition: background-color 0.13s ease-out;
+  -o-transition: background-color 0.13s ease-out;
+  transition: background-color 0.13s ease-out;
+}
+/* line 64, _sideNav.scss */
+.side-nav__nav-items li a {
+  width: 100%;
+  height: 60px;
+  text-decoration: none;
+  color: #000;
+  line-height: 60px;
+}
+/* line 72, _sideNav.scss */
+.side-nav__nav-items li:hover {
+  background-color: #efffdf;
+}
+/* line 78, _sideNav.scss */
 .side-nav__header {
   width: 100%;
   height: 30%;
   background-color: #4ba031;
 }
-/* line 54, _sideNav.scss */
+/* line 83, _sideNav.scss */
 .side-nav__header__cross {
   width: 20px;
   height: 20px;
@@ -129,7 +156,7 @@
   border: none;
   background-color: transparent;
 }
-/* line 71, _sideNav.scss */
+/* line 100, _sideNav.scss */
 .side-nav__header:before {
   content: "";
   background: url("../images/ball_icon.png") no-repeat;
@@ -140,26 +167,26 @@
   background-size: 100%;
   background-position: 100% -70%;
 }
-/* line 87, _sideNav.scss */
+/* line 116, _sideNav.scss */
 .side-nav.visible {
   transform: none;
   pointer-events: auto;
 }
-/* line 91, _sideNav.scss */
+/* line 120, _sideNav.scss */
 .side-nav.visible:before {
   opacity: 1;
 }
-/* line 96, _sideNav.scss */
+/* line 125, _sideNav.scss */
 .side-nav.visible .side-nav__container {
   transform: none;
 }
-/* line 100, _sideNav.scss */
+/* line 129, _sideNav.scss */
 .side-nav.animatable {
   -webkit-transition: transform 0.33s cubic-bezier(0, 0, 0.3, 1);
   -o-transition: transform 0.33s cubic-bezier(0, 0, 0.3, 1);
   transition: transform 0.33s cubic-bezier(0, 0, 0.3, 1);
 }
-/* line 106, _sideNav.scss */
+/* line 135, _sideNav.scss */
 .side-nav.animatable .side-nav__container {
   -webkit-transition: transform 0.13s cubic-bezier(0, 0, 0.3, 1);
   -o-transition: transform 0.13s cubic-bezier(0, 0, 0.3, 1);
@@ -799,29 +826,44 @@ template {
 * Add the correct display in IE 10-.
 */
 /* line 465, main.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 469, main.scss */
 [hidden] {
   display: none;
 }
 
-/* line 469, main.scss */
+/* line 473, main.scss */
 body, html {
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
-/* line 475, main.scss */
+/* line 479, main.scss */
 body {
   background-color: #fffce8;
 }
 
-/* line 479, main.scss */
+/* line 483, main.scss */
+.body-anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* line 492, main.scss */
 .header {
   width: 100%;
   height: 60px;
   background-color: #3e363f;
 }
-/* line 484, main.scss */
+/* line 497, main.scss */
 .header__side-click {
   height: 100%;
   width: 60px;
@@ -833,7 +875,7 @@ body {
   cursor: pointer;
 }
 
-/* line 496, main.scss */
+/* line 509, main.scss */
 .app-content {
   display: flex;
   width: 100%;

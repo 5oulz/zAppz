@@ -1,29 +1,53 @@
 'use strict';
 
-class AppFn {
 
-    // define template paths here
-    _setTemplates () {
-        this._templates = {
-            cubeTemplate: 'templates/cube.html'
+/**
+ * class app should initialize everything the app needs for it's shell. here's a list
+ * - sideNav
+ */
+class AppFn {
+    _setRequests () {
+        this._requests = {
+            sideNav: 'scripts/sideNav.js'
         };
+    }
+
+    /* define template paths here */
+    _setTemplates () {
+        //cubeTemplate: 'templates/cube.html',
+        initTemplates({
+            sideNavTemplate: 'templates/sideNav.html'
+        }, this);
     }
 
     constructor () {
         this._setArgs();
+        this._initAppDependencies();
     }
 
-    initLogin () {
-        document.registerElement('login-view', loginView);
+    _initSideNav() {
+        getMeThatJS(this._requests.sideNav)
+            .then(_ => {
+                document.registerElement('side-nav', sideNav);
+                return renderElements(
+                    this.sideNavTemplate(),
+                    document.getElementById('body-anchor')
+                );
+            })
+            .catch(console.log.bind(console));
     }
 
-    initSideNav() {
-        document.registerElement('side-nav', sideNav);
-    }
-
-    initCube() {
+    initCube(elem) {
         document.registerElement('polygon-cube', Cube);
-        this._cubeTemplate().render();
+        renderElements(
+            this.cubeTemplate( /* i want this params */
+                {
+                    test1: '<p style="text-align:center;line-height:150px;color:#fff;">spin me</p>',
+                    testsomemore: 'play'
+                }
+            ),
+            elem /* and i want it rendered here */
+        );
     }
 
     /**
@@ -51,35 +75,22 @@ class AppFn {
      * setters (not the god, though this one is spelled with an h)
      **/
 
-     _setArgs () {
-         this._setTemplates();
-         this._passiveEvs = this._passiveEvSupported();
-         this._loginHtml = '<login-view id="login-view" class="login-wrapper"><div class="login-wrapper__left-section"></div><div class="login-wrapper__middle-section"><div id="top-middle-login" class="login-wrapper__middle-section__not-box"></div><section class="login-wrapper__middle-section__login-box"></section><div class="login-wrapper__middle-section__login-box-shadow"></div><div id="bot-middle-login" class="login-wrapper__middle-section__not-box"></div></div><div class="login-wrapper__right-section"></div></login-view>';
-         this._appContent = document.getElementById('app-content');
-     }
+    _setArgs () {
+        this._setTemplates();
+        this._setRequests();
+        this._passiveEvs = this._passiveEvSupported();
+        this._appContent = document.getElementById('app-content');
+    }
 
-     _cubeTemplate(template, elem, obj) {
-         let cube = new loadHtml(
-             this._templates.cubeTemplate,
-             this._appContent,
-             {
-                 test1: '<p style="text-align:center;line-height:150px;color:#fff;">spin me</p>',
-                 testsomemore: 'play'
-             }
-         );
+    _initAppDependencies () {
+        this._initSideNav();
+    }
 
-         return cube;
-     }
+    /**
+    * getters
+    */
 
-     /**
-      * getters
-      */
-
-     getPassiveEvs () {
-         return this._passiveEvs;
-     }
-
-     getLoginHtml () {
-         return this._loginHtml;
-     }
-};
+    getPassiveEvs () {
+        return this._passiveEvs;
+    }
+}

@@ -1,22 +1,21 @@
 'use strict';
 
 class loadHtml {
-    constructor(path, element, params) {
+    constructor(path, params) {
         this._path = path;
-        this._element = element;
         if( params ) this._params = params;
-
         this._bindTThis();
     }
 
     _bindTThis () {
-        this._setHTML = this._setHTML.bind(this);
         this._fetchHtml = this._fetchHtml.bind(this);
         this._buildHTMLElement = this._buildHTMLElement.bind(this);
         this._replaceStrings = this._replaceStrings.bind(this);
+        this._getHtml = this._getHtml.bind(this);
+        this.render = this.render.bind(this);
     }
 
-    _fetchHtml (resolve, reject) {
+    _fetchHtml (resolve) {
         let xhr = new XMLHttpRequest(),
             _this = this;
 
@@ -38,6 +37,8 @@ class loadHtml {
         if( !this._params ) return htmlcont;
 
         this._htmlContent = this._replaceStrings(htmlcont);
+
+        return this._getHtml();
     }
 
     _fillString (stringToFill) {
@@ -67,12 +68,70 @@ class loadHtml {
         return this._fillString(parsedString[0]) + this._replaceStrings(htmlcont.replace(htmlcont.split('}}')[0], '').replace('}}', ''));
     }
 
-    _setHTML (htmlcont) {
-        this._element.innerHTML = this._htmlContent;
+    _getHtml () {
+        return this._htmlContent;
     }
 
     render () {
-        let request = new Promise(this._fetchHtml);
-        request.then(this._buildHTMLElement, _ => {}).then(this._setHTML);
+        return new Promise(this._fetchHtml).then(this._buildHTMLElement).catch(console.log.bind(console));
     }
+};
+
+
+
+/**
+ * templating functions
+ */
+
+
+/**
+ * generates a function to load the template and returns it
+ * @param {string} - template url
+ */
+let generateBindFn = (url) => {
+    let fn = (params) => {
+        let template = new loadHtml(
+            url,
+            params ? params : false
+        );
+
+        return template;
+    };
+
+    return fn;
+};
+
+
+/**
+ * retuns an obj with obj keys
+ * @param {object} - in this case containing urls
+ */
+let getTemplateKeys = (urls) => {
+    return Object.keys(urls);
+};
+
+/**
+ * loops through an array of keys from urls object and binds a function
+ * with each key name to the scopeBind object
+ * @param {object} - object of urls
+ * @param {scopeBind} - object where to bind each function
+ */
+let initTemplates = (urls, scopeBind) => {
+    let keys = getTemplateKeys(urls);
+
+    keys.forEach((elem) => {
+        scopeBind[elem] = generateBindFn(urls[elem]);
+    });
+};
+
+/**
+ * renders a template (type loadHtml) into an element
+ * @param {elem} - dom element
+ * @param {template} - promise returned by loadHtml
+ */
+let renderElements = (template, elem) => {
+    return template.render().then((result)=> {
+        elem.innerHTML = result;
+        return result;
+    });
 }

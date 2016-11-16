@@ -1,14 +1,43 @@
 'use strict';
 
-( _ => {
-    window.App = new AppFn();
-    App.initSideNav();
-    App.initLogin();
-    App.initCube();
+let initRouter = resolve => {
+    let router = new Router();
 
-    // we're creating it here now but further down the road it'll be tested where to apply it
-    //App.displayLoginView();
-    /*for( let i = 0; i < 10; setTimeout( _ => {
-        console.log(i++);
-    }, 10));*/
-} )();
+    return new Promise(resolve => {
+        return router ? resolve() : Error('Couldn\t start router');
+    });
+};
+
+let initLoadHtml = resolve => {
+    let templating = new loadHtml();
+
+    return new Promise(resolve => {
+        return templating ? resolve() : Error('Couldn\'t load templating');
+    });
+};
+
+let initApp = resolve => {
+    window.App = new AppFn();
+    //App.initCube(document.getElementById('app-content'));
+
+    return new Promise(resolve => {
+        return App ? resolve() : Error('Couldn\'t start App');
+    });
+};
+
+(_=>{
+    let requests = [
+        getMeThatJS('scripts/router.js'),
+        getMeThatJS('scripts/loadHtml.js'),
+        getMeThatJS('scripts/app.js')
+    ];
+
+    /**
+     * router and loadHtml are the first things to render, since they're essential to running our app
+     */
+    Promise.all(requests)
+        .then(initRouter)
+        .then(initLoadHtml)
+        .then(initApp)
+        .catch(console.log.bind(console));
+})();

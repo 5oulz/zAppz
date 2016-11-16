@@ -2,6 +2,7 @@
 
 class Cube extends HTMLElement {
     constructor () {
+        super();
     }
 
     attachedCallback () {
@@ -104,4 +105,31 @@ class Cube extends HTMLElement {
         this._cube.style.transform = `rotateY(${this._transformCubeX}deg) rotateX(${this._transformCubeY}deg)`;
         if( this._movingCube ) requestAnimationFrame(this._updateCube);
     }
-}
+};
+
+
+/**
+ * defining cubeView obj
+ */
+let cubeView = {
+    templates: {
+        cubeTemplate: 'templates/cube.html',
+    },
+
+    initialize: _ => {
+        document.registerElement('polygon-cube', Cube);
+        initTemplates(templates);
+    },
+
+    render: _ => {
+        renderElements(
+            this.cubeTemplate( /* i want this params */
+                {
+                    test1: '<p style="text-align:center;line-height:150px;color:#fff;">spin me</p>',
+                    testsomemore: 'play'
+                }
+            ),
+            elem /* and i want it rendered here */
+        );
+    }
+};

@@ -2,7 +2,6 @@
 
 class sideNav extends HTMLElement {
     constructor() {
-        super();
     }
 
     bindEvents() {

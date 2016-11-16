@@ -156,10 +156,6 @@ module.exports = function(grunt) {
     // Default task.
     //grunt.registerTask('default', ['jshint', 'qunit', 'clean', 'concat', 'uglify']);
     grunt.registerTask('serve', function (target) {
-        /*if (target === 'dist') {
-            return grunt.task.run(['build', 'open:server', 'connect:dist:keepalive']);
-        }*/
-
         grunt.task.run([
             'clean:server',
             'connect:livereload',

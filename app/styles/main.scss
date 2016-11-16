@@ -462,6 +462,10 @@ template {
 * Add the correct display in IE 10-.
 */
 
+* {
+    box-sizing: border-box;
+}
+
 [hidden] {
     display: none;
 }
@@ -474,6 +478,15 @@ body, html {
 
 body {
     background-color: palette(standard);
+}
+
+.body-anchor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
 .header {
