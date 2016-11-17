@@ -3,9 +3,9 @@
 Some work done under vanilla JS and trying to keep frameworks to a minimum.
 
 ## Getting Started
-1 - clone the repo__
-2 - npm install__
-3 - grunt serve
+1. clone the repo
+2. npm install
+3. grunt serve
 
 ## Documentation
 At the moment you'll find the following context:

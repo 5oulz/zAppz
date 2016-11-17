@@ -1,5 +1,5 @@
 /node_modules/
 styles/.css
 .sass-cache
-/dist/
-/test/
+dist/
+test/
