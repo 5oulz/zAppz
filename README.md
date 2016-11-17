@@ -1,27 +1,20 @@
 # zAppz
 
-broadcasting
+Some work done under vanilla JS and trying to keep frameworks to a minimum.
 
 ## Getting Started
-Download the [production version][min] or the [development version][max].
-
-[min]: https://raw.github.com/5oulz/zAppz/master/dist/y.min.js
-[max]: https://raw.github.com/5oulz/zAppz/master/dist/y.js
-
-In your web page:
-
-```html
-<script src="jquery.js"></script>
-<script src="dist/y.min.js"></script>
-<script>
-jQuery(function($) {
-  $.awesome(); // "awesome"
-});
-</script>
-```
+1 - clone the repo
+2 - npm install
+3 - grunt serve
 
 ## Documentation
-_(Coming soon)_
+At the moment you'll find the following context:
+- rendering js files on demand thanks to promises and fileFlix.js, a small function done for this purpose
+- rendering html on demand, also thanks to promises and a small templating file created with this on mind
+- a fancy animation with a cube!
+- router is in progress (just starting actually)
+
+Grunt is there to produce a local server. No time was invested in the server part and as just mainly imported from another project :)
 
 ## Examples
 _(Coming soon)_

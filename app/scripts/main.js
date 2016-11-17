@@ -18,7 +18,6 @@ let initLoadHtml = resolve => {
 
 let initApp = resolve => {
     window.App = new AppFn();
-    //App.initCube(document.getElementById('app-content'));
 
     return new Promise(resolve => {
         return App ? resolve() : Error('Couldn\'t start App');

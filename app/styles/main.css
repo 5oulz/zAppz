@@ -114,32 +114,33 @@
 /* line 54, _sideNav.scss */
 .side-nav__nav-items li {
   width: 100%;
-  padding: 0 20px;
   list-style-type: none;
   cursor: pointer;
   -webkit-transition: background-color 0.13s ease-out;
   -o-transition: background-color 0.13s ease-out;
   transition: background-color 0.13s ease-out;
 }
-/* line 64, _sideNav.scss */
+/* line 63, _sideNav.scss */
 .side-nav__nav-items li a {
+  display: block;
   width: 100%;
   height: 60px;
+  padding: 0 20px;
   text-decoration: none;
   color: #000;
   line-height: 60px;
 }
-/* line 72, _sideNav.scss */
+/* line 73, _sideNav.scss */
 .side-nav__nav-items li:hover {
   background-color: #efffdf;
 }
-/* line 78, _sideNav.scss */
+/* line 79, _sideNav.scss */
 .side-nav__header {
   width: 100%;
   height: 30%;
   background-color: #4ba031;
 }
-/* line 83, _sideNav.scss */
+/* line 84, _sideNav.scss */
 .side-nav__header__cross {
   width: 20px;
   height: 20px;
@@ -156,7 +157,7 @@
   border: none;
   background-color: transparent;
 }
-/* line 100, _sideNav.scss */
+/* line 101, _sideNav.scss */
 .side-nav__header:before {
   content: "";
   background: url("../images/ball_icon.png") no-repeat;
@@ -167,26 +168,26 @@
   background-size: 100%;
   background-position: 100% -70%;
 }
-/* line 116, _sideNav.scss */
+/* line 117, _sideNav.scss */
 .side-nav.visible {
   transform: none;
   pointer-events: auto;
 }
-/* line 120, _sideNav.scss */
+/* line 121, _sideNav.scss */
 .side-nav.visible:before {
   opacity: 1;
 }
-/* line 125, _sideNav.scss */
+/* line 126, _sideNav.scss */
 .side-nav.visible .side-nav__container {
   transform: none;
 }
-/* line 129, _sideNav.scss */
+/* line 130, _sideNav.scss */
 .side-nav.animatable {
   -webkit-transition: transform 0.33s cubic-bezier(0, 0, 0.3, 1);
   -o-transition: transform 0.33s cubic-bezier(0, 0, 0.3, 1);
   transition: transform 0.33s cubic-bezier(0, 0, 0.3, 1);
 }
-/* line 135, _sideNav.scss */
+/* line 136, _sideNav.scss */
 .side-nav.animatable .side-nav__container {
   -webkit-transition: transform 0.13s cubic-bezier(0, 0, 0.3, 1);
   -o-transition: transform 0.13s cubic-bezier(0, 0, 0.3, 1);

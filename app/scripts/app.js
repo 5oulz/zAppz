@@ -14,8 +14,8 @@ class AppFn {
 
     /* define template paths here */
     _setTemplates () {
-        //cubeTemplate: 'templates/cube.html',
         initTemplates({
+            cubeTemplate: 'templates/cube.html',
             sideNavTemplate: 'templates/sideNav.html'
         }, this);
     }
@@ -27,27 +27,43 @@ class AppFn {
 
     _initSideNav() {
         getMeThatJS(this._requests.sideNav)
-            .then(_ => {
+            .then(result => {
                 document.registerElement('side-nav', sideNav);
                 return renderElements(
                     this.sideNavTemplate(),
                     document.getElementById('body-anchor')
                 );
             })
+            .then(_ => {
+                this._temporaryBinds();
+            })
             .catch(console.log.bind(console));
     }
 
-    initCube(elem) {
-        document.registerElement('polygon-cube', Cube);
-        renderElements(
-            this.cubeTemplate( /* i want this params */
-                {
-                    test1: '<p style="text-align:center;line-height:150px;color:#fff;">spin me</p>',
-                    testsomemore: 'play'
-                }
-            ),
-            elem /* and i want it rendered here */
-        );
+
+    _temporaryBinds () {
+        this._initCube = this._initCube.bind(this);
+        document.getElementById('cube-route').addEventListener('click', this._initCube);
+    }
+
+    /**
+     * this is here until we have a router
+     */
+    _initCube () {
+        getMeThatJS('scripts/cube.js')
+            .then( _=> {
+                document.registerElement('polygon-cube', Cube);
+                return renderElements(
+                    this.cubeTemplate( /* i want this params */
+                        {
+                            test1: '<p style="text-align:center;line-height:150px;color:#fff;">spin me</p>',
+                            testsomemore: 'play'
+                        }
+                    ),
+                    document.getElementById('app-content') /* and i want it rendered here */
+                );
+            })
+            .catch(console.log.bind(console));
     }
 
     /**

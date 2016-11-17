@@ -1,3 +1,7 @@
+/**
+ * 95% based on Paul Lewis and Surma side nav. thanks to those 2 they rock. check out their github
+ * from Supercharged live coding @ https://github.com/GoogleChrome/ui-element-samples
+ */
 'use strict'
 
 class sideNav extends HTMLElement {
